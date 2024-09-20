@@ -5,7 +5,6 @@ from app.services.stt import execute_one
 from app.services.wav2pinyin import get_pinyin_from_audio
 from app.services.ai_service import get_correction_suggestions
 from app.services.tts import generate_tts_audio
-from app.services.convert_audio import convert_audio
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -20,10 +19,6 @@ def process_audio(audio_file):
         file_path = os.path.join(UPLOAD_FOLDER, filename)
         audio_file.save(file_path)
         print(f"Audio saved to {file_path}")
-
-        # 将音频转换为 wav 格式
-        # file_path = convert_audio(file_path,file_path)
-        # print(F"音频格式转换完成，保存路径：{file_path}")
 
         # 调用语音转文字服务
         text = execute_one(file_path)

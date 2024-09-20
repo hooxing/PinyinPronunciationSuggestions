@@ -1,24 +1,20 @@
 #coding=utf-8
 
-'''
-requires Python 3.6 or later
-pip install requests
-'''
 import base64
 import json
 import uuid
 import requests
+import configparser
 
-# 填写平台申请的appid, access_token以及cluster
-# appid = "xxxx"
-# access_token = "xxxx"
-# cluster = "xxxx"
+# 读取配置文件
+config = configparser.ConfigParser()
+config.read('../config.ini')
 
-appid = "5783655432"    # 项目的 appid
-access_token = "9ds8F7N7Qjal5PoxarEp8ctl32M3lvsN"    # 项目的 token
-cluster = "volcano_tts"  # 请求的集群
+appid = config['byteDanceTTS']['appid']
+access_token = config['byteDanceTTS']['access_token']
+cluster = config['byteDanceTTS']['cluster']
+voice_type = config['byteDanceTTS']['voice_type']
 
-voice_type = "BV700_V2_streaming"
 host = "openspeech.bytedance.com"
 api_url = f"https://{host}/api/v1/tts"
 
